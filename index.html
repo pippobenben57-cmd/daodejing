@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="道德经八十一章：原文、白话、历史案例，王弼与河上公古注，以及南怀瑾、曾仕强、林语堂讲法的转述。">
+<title>道德经</title>
+<style>
+/* 布局：左边是八十一章的方阵，右边是一章的全部内容 */
+:root{
+  --bg:#eef0ed;        /* 粉墙 */
+  --panel:#f7f8f6;     /* 纸 */
+  --ink:#1f2527;       /* 墨 */
+  --soft:#5d6a68;      /* 淡墨 */
+  --line:#c6cdc9;      /* 界线 */
+  --acc:#4b6a55;       /* 竹青 */
+  --mark:#9c3b2e;      /* 朱，只用在当前卦 */
+  --kai:"Kaiti SC","STKaiti","KaiTi","楷体",serif;
+  --song:"Songti SC","STSong","SimSun","Noto Serif CJK SC",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#14181a;--panel:#1a2022;--ink:#dfe4e1;--soft:#93a19d;--line:#33403d;--acc:#8fb79b;--mark:#e0705f;color-scheme:dark}
+}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--song);font-size:16px;line-height:1.85;padding-inline:20px;padding-block:24px 56px}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1180px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+.home{align-self:flex-start;font-size:.84rem;color:var(--soft);text-decoration:none;letter-spacing:.06em}
+.home:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px}
+h1{font-family:var(--kai);font-weight:400;font-size:clamp(2.4rem,6vw,3.4rem);line-height:1.1;margin:0;letter-spacing:.1em}
+.sub{margin:0;color:var(--soft);font-size:.95rem}
+.tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.tools .find{flex:1 1 260px;min-width:0;max-width:420px}
+input[type=search]{font:inherit;font-size:.92rem;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:6px 12px;width:100%;border-radius:0}
+input[type=search]::placeholder{color:var(--soft)}
+.stat{font-size:.82rem;color:var(--soft)}
+.qres{border:1px solid var(--line);background:var(--panel);padding:10px 14px;display:flex;flex-direction:column;gap:2px;max-height:320px;overflow-y:auto}
+.qres p{margin:0 0 4px;font-size:.82rem;color:var(--soft)}
+.qres button{text-align:left;padding:3px 0;font-size:.92rem;line-height:1.6;display:flex;gap:10px;justify-content:space-between;align-items:baseline}
+.qres button:hover .rt{text-decoration:underline}
+.qres .rs{flex:0 0 auto;font-size:.78rem;color:var(--soft)}
+
+.layout{display:grid;grid-template-columns:minmax(0,372px) minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr);gap:24px}}
+.side{position:sticky;top:12px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:900px){.side{position:static}}
+.grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:4px}
+.cell{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0 4px;border:1px solid transparent;line-height:1.2}
+.cell:hover{border-color:var(--line);background:var(--panel)}
+.cell[aria-current="true"]{border-color:var(--mark);background:var(--panel)}
+.cell[aria-current="true"] .nm{color:var(--mark)}
+.cell .nm{font-family:var(--kai);font-size:.86rem;white-space:nowrap}
+.cell.done .nm::after{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--acc);margin-left:2px;vertical-align:middle}
+svg.hx{display:block}
+svg.hx rect{fill:var(--ink)}
+.cell[aria-current="true"] svg.hx rect{fill:var(--mark)}
+.wings{display:flex;flex-wrap:wrap;gap:6px}
+.wings button{border:1px solid var(--line);padding:2px 12px;font-size:.9rem;line-height:1.7}
+.wings button:hover{border-color:var(--ink)}
+.wings button[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.legend{font-size:.78rem;color:var(--soft);margin:0}
+.legend i{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--acc);vertical-align:middle;margin-right:4px}
+
+main{min-width:0;display:flex;flex-direction:column;gap:22px}
+.head{display:flex;gap:22px;align-items:center}
+.head svg.hx{flex:0 0 auto}
+.head svg.hx rect{fill:var(--mark)}
+.head .no{font-size:.82rem;color:var(--soft);letter-spacing:.2em}
+.head h2{font-family:var(--kai);font-weight:400;font-size:3rem;line-height:1.1;margin:0}
+.head .full{color:var(--soft);font-size:.95rem;margin:2px 0 0}
+.nav{display:flex;gap:8px;margin-left:auto;align-self:flex-start}
+.nav button{border:1px solid var(--ink);padding:5px 14px;font-size:.9rem;line-height:1.5;white-space:nowrap}
+.nav button:hover:not(:disabled){background:var(--ink);color:var(--bg)}
+.nav button:disabled{opacity:.3;cursor:default}
+@media (max-width:560px){.head{flex-wrap:wrap}.nav{margin-left:0;width:100%}}
+h3{font-size:.8rem;font-weight:600;letter-spacing:.3em;color:var(--soft);margin:0;padding-top:14px;border-top:1px solid var(--line)}
+.orig{font-family:var(--kai);font-size:1.32rem;line-height:1.75;margin:0}
+.bh{margin:6px 0 0;max-width:36em}
+.todo{margin:6px 0 0;font-size:.86rem;color:var(--soft)}
+.blk{display:flex;flex-direction:column;gap:2px}
+.blk .lab{font-size:.8rem;color:var(--acc);letter-spacing:.15em}
+.yaos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.yaos li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.yaos li:last-child{border-bottom:0}
+.yl{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:6px}
+.yl span{font-size:.8rem;color:var(--acc);white-space:nowrap}
+.yl svg rect{fill:var(--ink)}
+.xx{margin:2px 0 0;font-size:.92rem;color:var(--soft)}
+.sum{background:var(--panel);border:1px solid var(--line);padding:16px 20px}
+.sum p{margin:0;max-width:36em}
+.rel{display:flex;flex-wrap:wrap;gap:10px}
+.rel button{display:flex;align-items:center;gap:10px;border:1px solid var(--line);padding:8px 14px;text-align:left;line-height:1.4}
+.rel button:hover{border-color:var(--ink)}
+.rel small{display:block;font-size:.76rem;color:var(--soft)}
+.rel b{font-family:var(--kai);font-weight:400;font-size:1.15rem}
+details.cm{border-bottom:1px solid var(--line)}
+details.cm>summary{cursor:pointer;padding:10px 0;list-style:none;display:flex;gap:10px;align-items:baseline}
+details.cm>summary::-webkit-details-marker{display:none}
+details.cm>summary::before{content:"＋";color:var(--soft);font-size:.8rem}
+details.cm[open]>summary::before{content:"－"}
+details.cm>summary b{font-weight:600}
+details.cm>summary small{color:var(--soft);font-size:.8rem}
+.cmt{padding:0 0 16px 1.6em;white-space:pre-line;max-width:38em}
+.cmt.raw{font-size:.95rem;color:var(--soft)}
+.tag{font-size:.72rem;color:var(--soft);border:1px solid var(--line);padding:0 5px;white-space:nowrap}
+.warn{font-size:.84rem;color:var(--soft);margin:0 0 8px;padding-left:1.9em;max-width:40em}
+.chap{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid var(--line)}
+.chap .cn{font-size:.8rem;color:var(--acc);letter-spacing:.15em}
+.chap .orig{font-size:1.2rem;white-space:pre-line}
+.how dt{font-weight:600;margin-top:14px}
+.how dd{margin:2px 0 0;max-width:38em}
+.src{border-top:1px solid var(--line);padding-top:18px;margin-top:20px;font-size:.84rem;color:var(--soft);line-height:1.8}
+.src h3{border:0;padding:0;margin:0 0 8px}
+.src ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;max-width:60em}
+.src b{color:var(--ink);font-weight:600}
+.src a{color:inherit;text-underline-offset:3px;word-break:break-all}
+.cell{padding:7px 0 5px}
+.cell .no2{font-size:.95rem;font-variant-numeric:tabular-nums;line-height:1.1}
+.cell .nm{font-size:.7rem;color:var(--soft);max-width:100%;overflow:hidden;text-overflow:clip;height:1.2em}
+.cell[aria-current="true"] .no2{color:var(--mark)}
+.head .numbig{font-family:var(--kai);font-size:3.4rem;line-height:1;color:var(--mark);min-width:1.6em;text-align:center}
+.orig.full{white-space:pre-line}
+.case{background:var(--panel);border:1px solid var(--line);padding:16px 20px;margin-top:10px}
+.case h4{margin:0 0 6px;font-family:var(--kai);font-weight:400;font-size:1.25rem}
+.case p{margin:0;max-width:38em}
+.seg{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;padding:8px 0;border-bottom:1px dotted var(--line)}
+.seg:last-child{border-bottom:0}
+.seg .t{font-family:var(--kai);font-size:1.12rem}
+.seg .n{font-size:.93rem;color:var(--soft)}
+.cmt2{padding:0 0 14px 1.6em;max-width:38em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="home" href="../">← 渊默的学习小院</a>
+  <header>
+    <h1>道德经</h1>
+    <p class="sub">八十一章。原文、白话、历史案例，王弼与河上公的古注，南怀瑾、曾仕强、林语堂讲法的转述。</p>
+  </header>
+
+  <div class="tools">
+    <div class="find"><input type="search" id="q" placeholder="找一句话或一个字：如“上善若水”“无为”“曹参”" aria-label="搜索全文"></div>
+    <span class="stat" id="stat">正在载入…</span>
+  </div>
+  <div class="qres" id="qres" hidden></div>
+
+  <div class="layout">
+    <nav class="side" aria-label="目录">
+      <div class="grid" id="grid"></div>
+      <p class="legend"><i></i>带圆点的章已有白话、案例和三家转述，其余暂时只有原文和两家古注。第一至三十七章是《道经》，第三十八章起是《德经》。</p>
+      <div class="wings" id="wings"></div>
+    </nav>
+    <main id="main" aria-live="polite"></main>
+  </div>
+
+  <footer class="src">
+    <h3>来源与说明</h3>
+    <ul>
+      <li><b>原文与王弼注</b>　取自维基文库《道德经（王弼本）》。<a href="https://zh.wikisource.org/wiki/道德經_(王弼本)" target="_blank" rel="noopener">zh.wikisource.org/wiki/道德經_(王弼本)</a></li>
+      <li><b>河上公注</b>　取自维基文库《老子河上公章句》。</li>
+      <li><b>《解老》《喻老》</b>　取自维基文库《韩非子》。</li>
+      <li><b>许可</b>　以上原文均属公有领域，标点与整理由维基文库贡献者完成，依 CC BY-SA 4.0 许可使用。</li>
+      <li><b>白话、要点、历史案例</b>　由 AI（Claude）撰写。案例尽量取自正史并注明出处，出自传说的也标明了；案例与章句的对应是一种读法。分批写成，带圆点的章是已经写好的。</li>
+      <li><b>南怀瑾、曾仕强、林语堂</b>　三位先生的著作仍在版权期内，本站没有引用原文。各章下的“转述”是 AI 凭对其著作和讲座的记忆写的几句大意，<b>没有逐条对照原书核实，可能不准确</b>，请勿当作原话引用。原书：南怀瑾《老子他说》，曾仕强《道德经的奥秘》，林语堂《老子的智慧》。</li>
+      <li><b>简体文字</b>　由繁体经 OpenCC 自动转换，个别字可能与通行本不同。</li>
+    </ul>
+  </footer>
+</div>
+
+<script src="interp.js"></script>
+<script>
+const WING_KEYS=[["how","怎么读"],["jl","韩非子·解老"],["yl","韩非子·喻老"]];
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const I=window.INTERP||{},HOW=window.HOWTO||[];
+const CN=n=>{const d="零一二三四五六七八九";if(n<=10)return n===10?"十":d[n];if(n<20)return "十"+d[n-10];const a=Math.floor(n/10),b=n%10;return d[a]+"十"+(b?d[b]:"");};
+let D=null,cur="c1",INDEX=[];
+const grid=document.getElementById("grid"),wings=document.getElementById("wings"),main=document.getElementById("main");
+
+function segHTML(arr){return arr.map(s=>`<div class="seg">${s[0]?`<div class="t">${esc(s[0])}</div>`:""}${s[1]?`<div class="n">${esc(s[1])}</div>`:""}</div>`).join("");}
+function renderCh(n){
+  const c=D.ch[n-1],t=I[n];
+  const tr=(name,txt)=>`<details class="cm" open><summary><b>${name}</b><small>转述，非原文</small></summary><p class="warn">凭记忆转述其讲法的大意，没有对照原书核实。</p><div class="cmt">${esc(txt)}</div></details>`;
+  main.innerHTML=`
+    <div class="head"><div class="numbig">${n}</div>
+      <div><div class="no">${n<=37?"道经":"德经"} · 第${CN(n)}章</div><h2>${esc(t?t.kw:c.ht)}</h2><p class="full">河上公题为“${esc(c.ht)}”</p></div>
+      <div class="nav"><button type="button" data-go="c${n-1}" ${n===1?"disabled":""}>上一章</button><button type="button" data-go="c${n+1}" ${n===81?"disabled":""}>下一章</button></div>
+    </div>
+    <h3>原文</h3>
+    <p class="orig full">${esc(c.wb.map(s=>s[0]).filter(Boolean).join("\n"))}</p>
+    ${t?`<h3>白话</h3><p class="bh" style="margin:0">${esc(t.bh)}</p>
+    <div class="sum"><p>${esc(t.sum)}</p></div>
+    ${t.an&&t.an.length?`<h3>历史案例</h3><div>${t.an.map(a=>`<div class="case"><h4>${esc(a[0])}</h4><p>${esc(a[1])}</p></div>`).join("")}</div>`:""}`
+      :`<p class="todo">这一章的白话、历史案例和三家转述还没有写到，下面先是两家古注。</p>`}
+    <h3>各家解读</h3>
+    <div>
+      ${t?tr("南怀瑾",t.nan)+tr("曾仕强",t.zeng)+tr("林语堂",t.lin):""}
+      <details class="cm"${t?"":" open"}><summary><b>王弼注</b><small>魏 · 逐句</small></summary><div class="cmt2">${segHTML(c.wb)}</div></details>
+      <details class="cm"><summary><b>河上公章句</b><small>汉 · 逐句</small></summary><div class="cmt2">${segHTML(c.hs)}</div></details>
+    </div>`;
+}
+function renderHF(k){
+  const name=k==="jl"?"解老":"喻老";
+  main.innerHTML=`<div class="head"><div><div class="no">《韩非子》</div><h2>${name}</h2></div></div>
+    <div class="sum"><p>${k==="jl"?"现存最早的《老子》解说。韩非逐句讲道理，从第三十八章“上德不德”讲起，可见他读的本子是《德经》在前。":"用历史故事来比方《老子》的句子：扁鹊见蔡桓公、楚庄王三年不鸣、宋人献玉、赵襄子学御，都出在这一篇。"}</p></div>
+    <h3>原文</h3><p class="orig full" style="font-size:1.12rem">${esc(D.hf[k])}</p>`;
+}
+function renderHow(){
+  main.innerHTML=`<div class="head"><div><div class="no">开始之前</div><h2>怎么读</h2></div></div>
+    <dl class="how">${HOW.map(x=>`<dt>${esc(x[0])}</dt><dd>${esc(x[1])}</dd>`).join("")}</dl>`;
+}
+function go(id,keepScroll){
+  if(!D)return;
+  const m=/^c(\d+)$/.exec(id);
+  if(m){const n=+m[1];if(n<1||n>81)return;cur=id;renderCh(n);}
+  else if(id==="how"){cur=id;renderHow();}
+  else if(id==="jl"||id==="yl"){cur=id;renderHF(id);}
+  else return;
+  [...grid.children].forEach((b,i)=>b.setAttribute("aria-current",cur==="c"+(i+1)?"true":"false"));
+  [...wings.children].forEach(b=>b.setAttribute("aria-current",b.dataset.go===cur?"true":"false"));
+  try{history.replaceState(null,"","#"+cur);}catch(e){}
+  if(!keepScroll&&window.matchMedia("(max-width:900px)").matches)main.scrollIntoView({block:"start"});
+}
+document.addEventListener("click",e=>{const b=e.target.closest("button[data-go]");if(b&&!b.disabled)go(b.dataset.go);});
+document.addEventListener("keydown",e=>{
+  if(e.target.closest("input,textarea,summary"))return;
+  const m=/^c(\d+)$/.exec(cur);if(!m)return;
+  if(e.key==="ArrowRight")go("c"+(+m[1]+1));
+  if(e.key==="ArrowLeft")go("c"+(+m[1]-1));
+});
+const q=document.getElementById("q"),qres=document.getElementById("qres");
+q.addEventListener("input",()=>{
+  const s=q.value.trim();
+  if(!s||!D){qres.hidden=true;return;}
+  const hits=INDEX.filter(x=>x.text.includes(s));
+  qres.hidden=false;
+  qres.innerHTML=`<p>${hits.length?`找到 ${hits.length} 处${hits.length>60?"，先列出前 60 处":""}`:"没有找到。原文由繁体转换而来，个别字可能和通行本不同，换个词试试。"}</p>`+
+    hits.slice(0,60).map(x=>{const i=x.text.indexOf(s);const ctx=x.text.slice(Math.max(0,i-10),i+s.length+16).replace(/\n/g," ");
+      return `<button type="button" data-go="${x.id}"><span class="rt">${esc(ctx)}</span><span class="rs">${esc(x.where)}</span></button>`;}).join("");
+});
+fetch("data.json").then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>{
+  D=d;
+  grid.innerHTML=d.ch.map(c=>`<button type="button" class="cell${I[c.n]?" done":""}" data-go="c${c.n}" title="第${CN(c.n)}章 ${esc(c.text.slice(0,12))}"><span class="no2">${c.n}</span><span class="nm">${esc(c.ht)}</span></button>`).join("");
+  wings.innerHTML=WING_KEYS.map(k=>`<button type="button" data-go="${k[0]}">${k[1]}</button>`).join("");
+  d.ch.forEach(c=>{
+    const t=I[c.n],w=`第${CN(c.n)}章`;
+    INDEX.push({id:"c"+c.n,where:w+" · 原文",text:c.wb.map(s=>s[0]).join("")});
+    if(t)INDEX.push({id:"c"+c.n,where:w+" · 白话与案例",text:[t.kw,t.bh,t.sum,...(t.an||[]).map(a=>a[0]+"："+a[1]),t.nan,t.zeng,t.lin].join("\n")});
+    INDEX.push({id:"c"+c.n,where:w+" · 王弼注",text:c.wb.map(s=>s[1]).join("\n")});
+    INDEX.push({id:"c"+c.n,where:w+" · 河上公",text:c.hs.map(s=>s[1]).join("\n")});
+  });
+  INDEX.push({id:"jl",where:"韩非子·解老",text:d.hf.jl},{id:"yl",where:"韩非子·喻老",text:d.hf.yl});
+  document.getElementById("stat").textContent=`八十一章原文与两家古注已全；白话与案例写到第 ${Object.keys(I).length} 章`;
+  const h=location.hash.slice(1);
+  go(/^(c\d+|how|jl|yl)$/.test(h)?h:"c1",true);
+}).catch(()=>{document.getElementById("stat").textContent="数据没有载入成功，刷新页面再试一次。";});
+</script>
+</body>
+</html>

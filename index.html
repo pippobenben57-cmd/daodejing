@@ -151,7 +151,7 @@ details.cm>summary small{color:var(--soft);font-size:.8rem}
   <div class="layout">
     <nav class="side" aria-label="目录">
       <div class="grid" id="grid"></div>
-      <p class="legend"><i></i>带圆点的章已有白话、案例和三家转述，其余暂时只有原文和两家古注。第一至三十七章是《道经》，第三十八章起是《德经》。</p>
+      <p class="legend">第一至三十七章是《道经》，第三十八章起是《德经》。每格下面的两个字是河上公给这一章起的题目。</p>
       <div class="wings" id="wings"></div>
     </nav>
     <main id="main" aria-live="polite"></main>
@@ -164,7 +164,7 @@ details.cm>summary small{color:var(--soft);font-size:.8rem}
       <li><b>河上公注</b>　取自维基文库《老子河上公章句》。</li>
       <li><b>《解老》《喻老》</b>　取自维基文库《韩非子》。</li>
       <li><b>许可</b>　以上原文均属公有领域，标点与整理由维基文库贡献者完成，依 CC BY-SA 4.0 许可使用。</li>
-      <li><b>白话、要点、历史案例</b>　由 AI（Claude）撰写。案例尽量取自正史并注明出处，出自传说的也标明了；案例与章句的对应是一种读法。分批写成，带圆点的章是已经写好的。</li>
+      <li><b>白话、要点、历史案例</b>　由 AI（Claude）撰写。案例尽量取自正史并注明出处，出自传说的也标明了；案例与章句的对应是一种读法。有十几章讲的是道本身，没有硬配案例。</li>
       <li><b>南怀瑾、曾仕强、林语堂</b>　三位先生的著作仍在版权期内，本站没有引用原文。各章下的“转述”是 AI 凭对其著作和讲座的记忆写的几句大意，<b>没有逐条对照原书核实，可能不准确</b>，请勿当作原话引用。原书：南怀瑾《老子他说》，曾仕强《道德经的奥秘》，林语堂《老子的智慧》。</li>
       <li><b>简体文字</b>　由繁体经 OpenCC 自动转换，个别字可能与通行本不同。</li>
     </ul>
@@ -172,6 +172,13 @@ details.cm>summary small{color:var(--soft);font-size:.8rem}
 </div>
 
 <script src="interp.js"></script>
+<script src="interp2.js"></script>
+<script src="interp3.js"></script>
+<script src="interp4.js"></script>
+<script src="interp5.js"></script>
+<script src="interp6.js"></script>
+<script src="interp7.js"></script>
+<script src="interp8.js"></script>
 <script>
 const WING_KEYS=[["how","怎么读"],["jl","韩非子·解老"],["yl","韩非子·喻老"]];
 const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
@@ -253,7 +260,7 @@ fetch("data.json").then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>{
     INDEX.push({id:"c"+c.n,where:w+" · 河上公",text:c.hs.map(s=>s[1]).join("\n")});
   });
   INDEX.push({id:"jl",where:"韩非子·解老",text:d.hf.jl},{id:"yl",where:"韩非子·喻老",text:d.hf.yl});
-  document.getElementById("stat").textContent=`八十一章原文与两家古注已全；白话与案例写到第 ${Object.keys(I).length} 章`;
+  const nd=Object.keys(I).length,na=Object.values(I).reduce((n,t)=>n+(t.an?t.an.length:0),0);document.getElementById("stat").textContent=nd>=81?`八十一章原文、白话、古注俱全，历史案例 ${na} 个`:`八十一章原文与两家古注已全；白话与案例写到第 ${nd} 章`;
   const h=location.hash.slice(1);
   go(/^(c\d+|how|jl|yl)$/.test(h)?h:"c1",true);
 }).catch(()=>{document.getElementById("stat").textContent="数据没有载入成功，刷新页面再试一次。";});
